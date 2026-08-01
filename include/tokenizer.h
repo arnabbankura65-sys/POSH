@@ -15,5 +15,6 @@ private:
     //Reads one starting at pos. Handles qoutes and escapes.
     //Advances pos past the token. Throws on malformed input.
     std::string readToken(const std::string& line,size_t& pos)const;
+    char unescape(char c) const;
 
 };

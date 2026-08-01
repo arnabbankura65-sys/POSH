@@ -20,7 +20,7 @@ std::string Tokenizer::readToken(const std::string& line,size_t& pos)const{
             while(pos < line.size() && line[pos] != '"'){
                 if(line[pos] == '\\' && pos + 1 < line.size()){
                     pos++;
-                    token += line[pos];
+                    token += unescape(line[pos]);
                     pos++;
                 }
                 else{
@@ -35,7 +35,7 @@ std::string Tokenizer::readToken(const std::string& line,size_t& pos)const{
         }
         else if(line[pos] == '\\' && pos + 1 < line.size()){
             pos++;
-            token += line[pos];
+            token += unescape(line[pos]);
             pos++;
         }
         else{
@@ -44,6 +44,21 @@ std::string Tokenizer::readToken(const std::string& line,size_t& pos)const{
         }
     }
     return token;
+}
+
+char Tokenizer::unescape(char c) const{
+    switch(c){
+        case 'n':
+            return '\n';
+        case 't':
+            return '\t';
+        case '\\':
+            return '\\';
+        case '"':
+            return '"';
+        default:
+            return c;
+    }
 }
 
 std::vector<std::string> Tokenizer::tokenize(const std::string& line)const{

@@ -16,8 +16,4 @@ private:
     //Advances pos past the token. Throws on malformed input.
     std::string readToken(const std::string& line,size_t& pos)const;
 
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> c572543 (Implement Tokenizer: skipWhitespace, readToken (quotes/escapes), tokenize)

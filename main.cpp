@@ -1,4 +1,5 @@
 #include "tokenizer.h"
+#include "executor.h"
 #include <iostream>
 #include <string>
 
@@ -9,10 +10,10 @@ int main() {
     while (std::getline(std::cin, line)) {
         try {
             auto tokens = tokenizer.tokenize(line);
-            for (const auto& tok : tokens) {
-                std::cout << "[" << tok << "] ";
-            }
-            if (!tokens.empty()) std::cout << "\n";
+            if(tokens.empty())continue;
+            if(tokens[0] == "exit")break;
+            Executor executor;
+            int result = executor.execute(tokens);
         } catch (const std::exception& e) {
             std::cerr << "posh: parse error: " << e.what() << "\n";
         }

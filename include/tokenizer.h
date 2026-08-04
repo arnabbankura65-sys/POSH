@@ -18,3 +18,4 @@ private:
     char unescape(char c) const;
 
 };
+
